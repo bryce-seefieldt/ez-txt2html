@@ -8,9 +8,9 @@ To use ezTxtToHtml, follow these steps:
    
 `git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
 
-2. Change your current working directory to the project folder:
+2. Change your current working directory to the src directory within the project folder:
    
-`cd ez-txt2html`
+`cd ez-txt2html\src`
 
 3. Install the required dependencies by running:
 
