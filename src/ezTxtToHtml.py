@@ -80,7 +80,6 @@ def writeToHtmlFile(outputPath, content):
     with open(outputPath, "w") as htmlFile:
         htmlFile.write(content)
     print(f'{outputPath} created\n')
-
     return
     
 def textToHtmlConverter(inputPath):
