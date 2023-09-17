@@ -49,7 +49,7 @@ HTML files will have the same name as the input text files but with the .html ex
 The current version of ezTxtToHtml is 0.0.1.
 
 ## License
-This program is open-source and released under the [MIT License] (https://opensource.org/license/mit). Feel free to use and modify it as needed.
+This program is open-source and released under the [MIT License](https://opensource.org/license/mit). Feel free to use and modify it as needed.
 
 ## Author
 ezTxtToHtml is maintained by [Bryce Seefieldt](https://github.com/bryce-seefieldt/).
