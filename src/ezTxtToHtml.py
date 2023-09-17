@@ -3,8 +3,6 @@ import os
 import argparse
 from shutil import rmtree
 
-
-
 VERSION = '0.0.1'
 DEFAULTOUTPUT= './HTML/'
 
@@ -19,7 +17,7 @@ def CommandLineParser():
     parser.add_argument('-o','--output',  metavar='<outputPath>',
                         help='Define output directory. Defaults to ./HTML')
     
-    #Store parsed arguments received from command line
+    # Store parsed arguments received from command line
     try:
         commandLineArguments = parser.parse_args()
     except argparse.ArgumentError as e:
@@ -84,8 +82,7 @@ def writeToHtmlFile(outputPath, content):
     
 def textToHtmlConverter(inputPath):
     try:
-        
-        #Verify if path is a directory or file
+        # Verify if path is a directory or file
         if os.path.exists(inputPath):
             print (f'Path Found')
             if os.path.isdir(inputPath):  
