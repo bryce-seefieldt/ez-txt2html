@@ -52,8 +52,8 @@ The current version of ezTxtToHtml is 0.0.1.
 This program is open-source and released under the [MIT License] (https://opensource.org/license/mit). Feel free to use and modify it as needed.
 
 ## Author
-ezTxtToHtml is maintained by [Bryce Seefieldt] (https://github.com/bryce-seefieldt/).
+ezTxtToHtml is maintained by [Bryce Seefieldt](https://github.com/bryce-seefieldt/).
 
-If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/bryce-seefieldt/ezTxtToHtml/issues).
+If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/bryce-seefieldt/ez-txt2html/issues).
 
 Enjoy converting your text files to HTML with ezTxtToHtml!
