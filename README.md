@@ -5,12 +5,15 @@ ezTxt2Html is a simple open-source Python program that converts plain text files
 To use ezTxtToHtml, follow these steps:
 
 1. Clone or download this repository to your local machine:
+   
 `git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
 
 2. Change your current working directory to the project folder:
+   
 `cd ez-txt2html`
 
 3. Install the required dependencies by running:
+
 `pip install -r requirements.txt`
 
 Now, you have successfully installed ezTxtToHtml.
@@ -23,15 +26,18 @@ You can run ezTxtToHtml from the command line. It accepts the following command-
 - 'inputPath' (required): Provide the path to the target file or directory containing the text files to be converted.
 
 Here's how you can run ezTxtToHtml:
+
 `python ezTxtToHtml.py inputPath`
 
 - 'inputPath': Replace this with the path to the target text file or directory containing text files.
 
 ## Input
 1. Convert a single text file to HTML:
+
 `python ezTxtToHtml.py path/to/yourfile.txt`
 
 2. Convert all text files in a directory to HTML:
+
 `python ezTxtToHtml.py path/to/yourdirectory`
 
 
