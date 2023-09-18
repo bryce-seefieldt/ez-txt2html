@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import argparse
+import re
 from shutil import rmtree
 
 VERSION = '0.0.1'
@@ -44,30 +45,60 @@ def openCurrentFile(currentFile):
         print (f'{parseLines}')
     return parseLines
 
+# Parse markdown to Html
+def parseMarkdownToHtml(markdownLines):
+    htmlContent = ""
+    paragraph = False
+
+    for line in markdownLines:
+        if line.strip() == "":
+            if paragraph:
+                htmlContent += "</p>\n"
+                paragraph = False
+        else:
+            if not paragraph:
+                htmlContent += "<p>"
+                paragraph = True
+
+            line = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', line)
+            line = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', line)
+            line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
+            line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
+
+            htmlContent += line.strip() + "\n"
+
+    if paragraph:
+        htmlContent += "</p>\n"
+
+    return htmlContent
+
 def convertTextContent(parsedLines, filename):
     htmlContent = f"<html lang='en'>\n<head>\n\t<meta charset='utf-8'>\n"
     pageTitle = os.path.splitext(os.path.basename(filename))[0]  
     htmlContent += f"""\n \t<title>{pageTitle}</title>\n\t<meta name='viewport' content='width=device-width, initial-scale=1'>
     \n</head>\n<body>\n"""
 
-    paragraph = False 
-    for line in parsedLines:
-        htmlLine = line
-        if not paragraph:
-            htmlContent += "<p>"
-            paragraph = True
-    
-        if line == "\n": 
-            htmlContent += "</p>\n"
-            paragraph = False
-    
-        else: 
-            htmlLine = line.replace("\n", " ")
-            htmlContent += f'{htmlLine}'
-        
-    if paragraph:
+    if filename.endswith('.md'):
+        htmlContent += parseMarkdownToHtml(parsedLines)
+    else:
+        paragraph = False
+        for line in parsedLines:
+            htmlLine = line
+            if not paragraph:
+                htmlContent += "<p>"
+                paragraph = True
+
+            if line == "\n":
                 htmlContent += "</p>\n"
-        
+                paragraph = False
+
+            else:
+                htmlLine = line.replace("\n", " ")
+                htmlContent += f'{htmlLine}'
+
+        if paragraph:
+            htmlContent += "</p>\n"
+
     htmlContent += f"</body>\n</html>"
     htmlContent += f"</html>"
     
@@ -89,7 +120,7 @@ def textToHtmlConverter(inputPath):
                 print (f'Path is directory')
                 deleteOutputDirectory(DEFAULTOUTPUT)
                 for filename in os.listdir(inputPath):
-                    if filename.endswith('.txt'):
+                    if filename.endswith(('.txt', '.md')):
                         verifiedFile = os.path.join(inputPath, filename)
                         convertedFilename = os.path.splitext(os.path.basename(filename))[0] + '.html'
                         convertedPath = f'{DEFAULTOUTPUT}{convertedFilename}'
@@ -99,9 +130,9 @@ def textToHtmlConverter(inputPath):
                         
             else:
                 print (f'Path is file')
-                if inputPath.endswith('.txt'):
+                if inputPath.endswith(('.txt', '.md')):
                         deleteOutputDirectory(DEFAULTOUTPUT)
-                        print (f'Path is .TXT file')
+                        print (f'Path is .TXT or .MD file')
                         verifiedFile = inputPath
                         convertedFilename = os.path.splitext(os.path.basename(inputPath))[0] + '.html'
                         convertedPath = f'HERE'
