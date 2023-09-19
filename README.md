@@ -6,11 +6,17 @@ ezTxt2Html is a simple open-source Python program that converts plain text and m
 
 To use ezTxtToHtml, follow these steps:
 
-1. Clone or download this repository to your local machine:
+1. Ensure you have the latest version of Python 3 installed.
+
+`python --version`
+
+2. If needed, download and install [Python 3](https://www.python.org/downloads/)
+
+Clone or download this repository to your local machine:
 
 `git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
 
-2. Change your current working directory to the src directory within the project folder:
+3. Change your current working directory to the src directory within the project folder:
 
 `cd ez-txt2html\src`
 

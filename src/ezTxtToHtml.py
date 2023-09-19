@@ -42,7 +42,6 @@ def verifyArguments(commandLineArguments):
 def openCurrentFile(currentFile):
     with open(currentFile, "r") as txt:
         parseLines = txt.readlines()
-        print (f'{parseLines}')
     return parseLines
 
 # Parse markdown to Html
@@ -101,8 +100,7 @@ def convertTextContent(parsedLines, filename):
 
     htmlContent += f"</body>\n</html>"
     htmlContent += f"</html>"
-    
-    print(f'{htmlContent}')
+
     return htmlContent
 
 def writeToHtmlFile(outputPath, content):
