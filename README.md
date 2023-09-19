@@ -20,7 +20,7 @@ Clone or download this repository to your local machine:
 
 `cd ez-txt2html\src`
 
-3. Install the required dependencies by running:
+4. Install the required dependencies by running:
 
 `pip install -r requirements.txt`
 
