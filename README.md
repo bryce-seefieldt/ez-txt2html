@@ -12,15 +12,15 @@ To use ezTxtToHtml, follow these steps:
 
 2. If needed, download and install [Python 3](https://www.python.org/downloads/)
 
-Clone or download this repository to your local machine:
+3. Clone or download this repository to your local machine:
 
 `git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
 
-3. Change your current working directory to the src directory within the project folder:
+4. Change your current working directory to the src directory within the project folder:
 
 `cd ez-txt2html\src`
 
-4. Install the required dependencies by running:
+5. Install the required dependencies by running:
 
 `pip install -r requirements.txt`
 
