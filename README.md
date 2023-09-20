@@ -58,7 +58,9 @@ HTML files will have the same name as the input files but with the .html extensi
 ## Examples 
 The included examples folder contains a sample text file which can be run to get an idea of this tool works.  While in the src folder run:
 
-`python ezTxtToHtml.py ../examples/` to see how it convert all text files in a folder, OR `python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file.
+`python ezTxtToHtml.py ../examples/` to see how it convert all text files in a folder, OR 
+
+`python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file.
 
 The converted HTML files will appear in /src/HTML/ unless otherwise specified.
 
