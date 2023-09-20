@@ -52,7 +52,7 @@ Here's how you can run ezTxtToHtml:
 
 ## Output
 
-HTML files will be created in a new ./HTML directory within the program folder.
+HTML files will be saved to an automatically created ./src/HTML/ directory. This folder will be overwritten entirely with each execution of the program.
 HTML files will have the same name as the input files but with the .html extension.
 
 ## Examples 
