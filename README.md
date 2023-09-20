@@ -53,7 +53,7 @@ Here's how you can run ezTxtToHtml:
 
 ## Output
 
-HTML files will be saved to an automatically created ./src/HTML/ directory. This folder will be overwritten entirely with each execution of the program.
+HTML files will be saved to automatically created ./src/HTML/ directory as a default. Use '-o' or '--output' along with your desirec directory path in order to overide the default save location. This output folder will be overwritten entirely with each execution of the program.
 HTML files will have the same name as the input files but with the .html extension.
 
 ## Examples 
