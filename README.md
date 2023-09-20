@@ -33,12 +33,13 @@ You can run ezTxtToHtml from the command line. It accepts the following command-
 - '-h' or '--help': Display help screen.
 - '-v' or '--version': Display the current version of ezTxtToHtml and exit.
 - 'inputPath' (required): Provide the path to the target file or directory containing the files to be converted.
-
+- '-o' or '--output' (optional): Define the output directory for the HTML files. If not specified, it defaults to ./HTML.
 Here's how you can run ezTxtToHtml:
 
-`python ezTxtToHtml.py inputPath`
+`python ezTxtToHtml.py inputPath [-o outputPath]`
 
 - 'inputPath': Replace this with the path to the target file or directory containing text or markdown files.
+- 'o outputPath' (optional): Replace this with the desired output directory for the HTML files.
 
 ## Input
 
@@ -62,8 +63,10 @@ The included examples folder contains a sample text file which can be run to get
 
 `python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file.
 
-The converted HTML files will appear in /src/HTML/ unless otherwise specified.
+The converted HTML files will appear in /src/HTML/ unless otherwise specified. 
 
+To specify the output directory add '-o' or '--output' forllowed by the local or relative destination path to the command line:
+`python ezTxtToHtml.py ../examples/blogPost.txt -o ../examples`
 
 ## Version
 
