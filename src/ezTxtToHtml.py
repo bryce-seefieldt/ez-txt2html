@@ -4,8 +4,9 @@ import argparse
 import re
 from shutil import rmtree
 
-VERSION = '0.0.1'
-DEFAULTOUTPUT= './HTML/'
+VERSION = '0.1'
+DEFAULTOUTPUT= './HTML'
+
 
 def CommandLineParser():
     parser = argparse.ArgumentParser(description='Text to HTML Converter HELP')
@@ -15,7 +16,7 @@ def CommandLineParser():
     
     parser.add_argument('inputPath', help='Provide path to target file or directory')
     
-    parser.add_argument('-o','--output',  metavar='<outputPath>',
+    parser.add_argument('-o','--output',  metavar='<output Path>',
                         help='Define output directory. Defaults to ./HTML')
     
     # Store parsed arguments received from command line
@@ -37,7 +38,8 @@ def deleteOutputDirectory(outputPath):
 # Validate received command line arguments
 def verifyArguments(commandLineArguments):
     inputPath = commandLineArguments.inputPath
-    return inputPath
+    outputPath = commandLineArguments.output or f'{DEFAULTOUTPUT}'
+    return inputPath, outputPath
 
 def openCurrentFile(currentFile):
     with open(currentFile, "r") as txt:
@@ -109,7 +111,7 @@ def writeToHtmlFile(outputPath, content):
     print(f'{outputPath} created\n')
     return
     
-def textToHtmlConverter(inputPath):
+def textToHtmlConverter(inputPath, outputPath):
     try:
         # Verify if path is a directory or file
         if os.path.exists(inputPath):
@@ -121,7 +123,7 @@ def textToHtmlConverter(inputPath):
                     if filename.endswith(('.txt', '.md')):
                         verifiedFile = os.path.join(inputPath, filename)
                         convertedFilename = os.path.splitext(os.path.basename(filename))[0] + '.html'
-                        convertedPath = f'{DEFAULTOUTPUT}{convertedFilename}'
+                        convertedPath = f'{outputPath}/{convertedFilename}'
                         parsedLines = openCurrentFile(verifiedFile) 
                         htmlContent = convertTextContent(parsedLines, verifiedFile)
                         writeToHtmlFile(convertedPath, htmlContent)
@@ -133,8 +135,7 @@ def textToHtmlConverter(inputPath):
                         print (f'Path is .TXT or .MD file')
                         verifiedFile = inputPath
                         convertedFilename = os.path.splitext(os.path.basename(inputPath))[0] + '.html'
-                        convertedPath = f'HERE'
-                        convertedPath = f'{DEFAULTOUTPUT}{convertedFilename}'
+                        convertedPath = f'{outputPath}/{convertedFilename}'
                         parsedLines = openCurrentFile(inputPath)
                         htmlContent = convertTextContent(parsedLines, inputPath)
                         writeToHtmlFile(convertedPath, htmlContent)
@@ -153,7 +154,7 @@ def textToHtmlConverter(inputPath):
 if __name__ == '__main__':
     print (f"Python Text to HTML Converter Running")
     commandLineArguments = CommandLineParser()
-    inputPath = verifyArguments(commandLineArguments)
-    textToHtmlConverter(inputPath)
+    inputPath, outputPath = verifyArguments(commandLineArguments)
+    textToHtmlConverter(inputPath, outputPath)
     
 
