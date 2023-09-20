@@ -2,7 +2,7 @@
 <head>
 	<meta charset='utf-8'>
 
- 	<title>til-txt2Html</title>
+ 	<title>til-txtToHtml</title>
 	<meta name='viewport' content='width=device-width, initial-scale=1'>
     
 </head>
@@ -18,13 +18,13 @@
 <p>`pip install -r requirements.txt` </p>
 <p>That’s it, ez, the program is ready to run. </p>
 <p>You can run the program from the command line. It accepts the following command-line arguments: </p>
-<p>- '-h' or '--help': Display help screen. - '-v' or '--version': Display the current version of ezTxtToHtml and exit. - 'inputPath' (required): Provide the path to the target file or directory containing the files to be converted. </p>
-<p>To can run ezTxtToHtml use the command `python ezTxtToHtml.py inputPath` from the ./src/ directory in repository. Replace 'inputPath':  this with the path to the target file or directory containing text or markdown files. For example: </p>
+<p>- '-h' or '--help': Display help screen. - '-v' or '--version': Display the current version of ezTxtToHtml and exit. - 'inputPath' (required): Provide the path to the target file or directory containing the files to be converted. - '-o' or '--output' (optional): Define the output directory for the HTML files. If not specified, it defaults to ./HTML. Here's how you can run ezTxtToHtml: </p>
+<p>To can run ezTxtToHtml use the command `python ezTxtToHtml.py inputPath [-o outputPath]`from the ./src/ directory in repository. Replace 'inputPath':  this with the path to the target file or directory containing text or markdown files. For example: </p>
 <p>1. Convert a single text or markdown file to HTML: </p>
 <p>`python ezTxtToHtml.py path/to/yourfile.txt` </p>
 <p>2. Convert all text or markdown files in a directory to HTML: </p>
 <p>`python ezTxtToHtml.py path/to/yourdirectory` </p>
-<p>The generated HTML files will be saved to an automatically generated directory ./src/HTML/ This folder will be overwritten entirely with each execution of the program. The resulting HTML files will have the same name as the input files but with the .html extension.  The repo includes an examples folder containing  a sample text file which can be run to get an idea of this tool works.  While in the src folder run: `python ezTxtToHtml.py ../examples/` to see how it convert all text files in a folder, OR  </p>
+<p>The generated HTML files will be saved to automatically created ./src/HTML/ directory as a default. Use '-o' or '--output' along with your desirec directory path in order to overide the default save location. This folder will be overwritten entirely with each execution of the program. The resulting HTML files will have the same name as the input files but with the .html extension.  The repo includes an examples folder containing  a sample text file which can be run to get an idea of this tool works.  While in the src folder run: `python ezTxtToHtml.py ../examples/` to see how it convert all text files in a folder, OR  </p>
 <p>`python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file. </p>
 <p>The converted files will be saved to  the /src/HTML/ directory, unless otherwise specified. </p>
 </body>
