@@ -67,7 +67,7 @@ The converted HTML files will appear in /src/HTML/ unless otherwise specified.
 
 ## Version
 
-The current version of ezTxtToHtml is 0.1,
+The current version of ezTxtToHtml is 0.1.
 
 ## License
 
