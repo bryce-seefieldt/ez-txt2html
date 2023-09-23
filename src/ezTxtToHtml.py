@@ -50,22 +50,29 @@ def openCurrentFile(currentFile):
 def parseMarkdownToHtml(markdownLines):
     htmlContent = ""
     paragraph = False
+    heading = False
 
     for line in markdownLines:
         if line.strip() == "":
-            if paragraph:
+            if paragraph and not heading:
                 htmlContent += "</p>\n"
                 paragraph = False
         else:
-            if not paragraph:
+            if "#" in line[0]:
+                heading = True
+                line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
+                line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
+            else:
+                heading = False
+
+
+            if not paragraph and not heading:
                 htmlContent += "<p>"
                 paragraph = True
 
             line = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', line)
             line = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', line)
-            line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
-            line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
-
+            
             htmlContent += line.strip() + "\n"
 
     if paragraph:
