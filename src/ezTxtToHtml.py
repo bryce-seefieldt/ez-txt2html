@@ -101,7 +101,6 @@ def convertTextContent(parsedLines, filename):
             htmlContent += "</p>\n"
 
     htmlContent += f"</body>\n</html>"
-    htmlContent += f"</html>"
 
     return htmlContent
 
