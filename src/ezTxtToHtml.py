@@ -43,8 +43,8 @@ def verifyArguments(commandLineArguments):
 
 def openCurrentFile(currentFile):
     with open(currentFile, "r") as txt:
-        parseLines = txt.readlines()
-    return parseLines
+        parsedLines = txt.readlines()
+    return parsedLines
 
 # Parse markdown to Html
 def parseMarkdownToHtml(markdownLines):
