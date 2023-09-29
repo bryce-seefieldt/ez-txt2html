@@ -50,6 +50,7 @@ def openCurrentFile(currentFile):
 def parseMarkdownToHtml(markdownLines):
     htmlContent = ""
     paragraph = False
+    codeFenceOpen = False
 
     for line in markdownLines:
         if line.strip() == "":
@@ -66,6 +67,19 @@ def parseMarkdownToHtml(markdownLines):
             line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
             line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
             line = re.sub(r'^---', r'<hr />', line)
+
+            
+            if re.search(r'\`\`\`', line):
+                print(f"found ''' in {line}")
+                
+                if codeFenceOpen is True:
+                    line = re.sub(r'\`\`\`', r'</code>', line)
+                    codeFenceOpen = False
+                else:
+                    line = re.sub(r'\`\`\`', r'<code>', line)
+                    codeFenceOpen = True
+
+            line = re.sub(r'\`(.*?)\`', r'<code>\1</code>', line)
 
             htmlContent += line.strip() + "\n"
 
