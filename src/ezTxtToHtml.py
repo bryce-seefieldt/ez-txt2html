@@ -43,13 +43,14 @@ def verifyArguments(commandLineArguments):
 
 def openCurrentFile(currentFile):
     with open(currentFile, "r") as txt:
-        parseLines = txt.readlines()
-    return parseLines
+        parsedLines = txt.readlines()
+    return parsedLines
 
 # Parse markdown to Html
 def parseMarkdownToHtml(markdownLines):
     htmlContent = ""
     paragraph = False
+    codeFenceOpen = False
 
     for line in markdownLines:
         if line.strip() == "":
@@ -65,6 +66,21 @@ def parseMarkdownToHtml(markdownLines):
             line = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', line)
             line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
             line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
+            
+            if re.search(r'\`\`\`', line):
+                print(f"found ''' in {line}")
+                
+                if codeFenceOpen is True:
+                    line = re.sub(r'\`\`\`', r'</code>', line)
+                    codeFenceOpen = False
+                    print(f"CodeFence Closed")
+                else:
+                    print(f"CodeFence Needs to be Opened")  
+                    line = re.sub(r'\`\`\`', r'<code>', line)
+                    codeFenceOpen = True
+                    # print(f"CodeFence Opened")  
+
+            line = re.sub(r'\`(.*?)\`', r'<code>\1</code>', line)
 
             htmlContent += line.strip() + "\n"
 
