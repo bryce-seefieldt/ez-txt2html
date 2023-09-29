@@ -66,6 +66,8 @@ def parseMarkdownToHtml(markdownLines):
             line = re.sub(r'(\*|_)(.*?)\1', r'<em>\2</em>', line)
             line = re.sub(r'^# (.+)$', r'<h1>\1</h1>', line)
             line = re.sub(r'^## (.+)$', r'<h2>\1</h2>', line)
+            line = re.sub(r'^---', r'<hr />', line)
+
             
             if re.search(r'\`\`\`', line):
                 print(f"found ''' in {line}")
@@ -73,12 +75,9 @@ def parseMarkdownToHtml(markdownLines):
                 if codeFenceOpen is True:
                     line = re.sub(r'\`\`\`', r'</code>', line)
                     codeFenceOpen = False
-                    print(f"CodeFence Closed")
                 else:
-                    print(f"CodeFence Needs to be Opened")  
                     line = re.sub(r'\`\`\`', r'<code>', line)
                     codeFenceOpen = True
-                    # print(f"CodeFence Opened")  
 
             line = re.sub(r'\`(.*?)\`', r'<code>\1</code>', line)
 
