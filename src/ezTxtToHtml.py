@@ -19,6 +19,8 @@ def CommandLineParser():
     parser.add_argument('-o','--output',  metavar='<output Path>',
                         help='Define output directory. Defaults to ./HTML')
     
+    parser.add_argument('-c', '--config', metavar='<config path>', help='Provide a TOML file with predefined arguments')
+    
     # Store parsed arguments received from command line
     try:
         commandLineArguments = parser.parse_args()
