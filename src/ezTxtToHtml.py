@@ -49,8 +49,17 @@ def loadConfig(configPath):
 
 # Validate received command line arguments
 def verifyArguments(commandLineArguments):
+    configPath = commandLineArguments.config
     inputPath = commandLineArguments.inputPath
-    outputPath = commandLineArguments.output or f'{DEFAULTOUTPUT}'
+
+    if configPath is None:
+        outputPath = commandLineArguments.output or f'{DEFAULTOUTPUT}'
+    else:
+        config = loadConfig(configPath)
+        if "output" in config:
+            outputPath = config["output"]
+        else:
+            outputPath = f'{DEFAULTOUTPUT}'
     return inputPath, outputPath
 
 def openCurrentFile(currentFile):
