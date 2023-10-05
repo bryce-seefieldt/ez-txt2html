@@ -3,6 +3,7 @@ import os
 import argparse
 import re
 from shutil import rmtree
+import tomllib
 
 VERSION = '0.1'
 DEFAULTOUTPUT= './HTML'
@@ -19,7 +20,7 @@ def CommandLineParser():
     parser.add_argument('-o','--output',  metavar='<output Path>',
                         help='Define output directory. Defaults to ./HTML')
     
-    parser.add_argument('-c', '--config', metavar='<config path>', help='Provide a TOML file with predefined arguments')
+    parser.add_argument('-c', '--config', metavar='<config Path>', help='Provide a TOML file with predefined arguments')
     
     # Store parsed arguments received from command line
     try:
@@ -36,6 +37,15 @@ def deleteOutputDirectory(outputPath):
         rmtree(outputPath)
     os.makedirs(outputPath)
 
+# Load arguments from a config file
+def loadConfig(configPath):
+    try:
+        with open(configPath, "rb") as f:
+            config = tomllib.load(f)
+    except FileNotFoundError as e:
+        raise Exception(f"Config file '{configPath}' could not be found.")
+
+    return config
 
 # Validate received command line arguments
 def verifyArguments(commandLineArguments):
