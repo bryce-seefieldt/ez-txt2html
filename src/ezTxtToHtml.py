@@ -4,6 +4,7 @@ import argparse
 import re
 from shutil import rmtree
 import tomllib
+import sys
 
 VERSION = '0.1'
 DEFAULTOUTPUT= './HTML'
@@ -190,7 +191,10 @@ def textToHtmlConverter(inputPath, outputPath):
 if __name__ == '__main__':
     print (f"Python Text to HTML Converter Running")
     commandLineArguments = CommandLineParser()
-    inputPath, outputPath = verifyArguments(commandLineArguments)
-    textToHtmlConverter(inputPath, outputPath)
-    
-
+    try:
+        inputPath, outputPath = verifyArguments(commandLineArguments)
+        textToHtmlConverter(inputPath, outputPath)
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    sys.exit()
