@@ -34,12 +34,15 @@ You can run ezTxtToHtml from the command line. It accepts the following command-
 - '-v' or '--version': Display the current version of ezTxtToHtml and exit.
 - 'inputPath' (required): Provide the path to the target file or directory containing the files to be converted.
 - '-o' or '--output' (optional): Define the output directory for the HTML files. If not specified, it defaults to ./HTML.
+- '-c' or '--config' (optional): Provide a custom [TOML](https://toml.io/en/) config file with pre-defined arguments.
+
 Here's how you can run ezTxtToHtml:
 
-`python ezTxtToHtml.py inputPath [-o outputPath]`
+`python ezTxtToHtml.py inputPath [-o outputPath] [-c configPath]`
 
 - 'inputPath': Replace this with the path to the target file or directory containing text or markdown files.
 - 'o outputPath' (optional): Replace this with the desired output directory for the HTML files.
+- 'c configPath' (optional): Replace this with the path to a .toml config file.
 
 ## Input
 
@@ -56,6 +59,18 @@ Here's how you can run ezTxtToHtml:
 HTML files will be saved to automatically created ./src/HTML/ directory as a default. Use '-o' or '--output' along with your desirec directory path in order to overide the default save location. This output folder will be overwritten entirely with each execution of the program.
 HTML files will have the same name as the input files but with the .html extension.
 
+## Configuration File
+
+Arguments may be pre-defined in a [TOML](https://toml.io/en/) file and passed to the program.
+
+Example TOML configuration (i.e. in a file named `config.toml`):
+
+```toml
+output = "./HTML"
+```
+
+Note: Using a config file will override other command line switches (if provided).
+
 ## Examples 
 The included examples folder contains a sample text file which can be run to get an idea of this tool works.  While in the src folder run:
 
@@ -67,6 +82,8 @@ The converted HTML files will appear in /src/HTML/ unless otherwise specified.
 
 To specify the output directory add '-o' or '--output' forllowed by the local or relative destination path to the command line:
 `python ezTxtToHtml.py ../examples/blogPost.txt -o ../examples`
+
+To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ezTxtToHtml.py ../examples/ -c ../examples/config.toml`
 
 ## Version
 
