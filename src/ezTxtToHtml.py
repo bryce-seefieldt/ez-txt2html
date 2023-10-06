@@ -3,6 +3,8 @@ import os
 import argparse
 import re
 from shutil import rmtree
+import tomllib
+import sys
 
 VERSION = '0.1'
 DEFAULTOUTPUT= './HTML'
@@ -19,6 +21,8 @@ def CommandLineParser():
     parser.add_argument('-o','--output',  metavar='<output Path>',
                         help='Define output directory. Defaults to ./HTML')
     
+    parser.add_argument('-c', '--config', metavar='<config Path>', help='Provide a TOML file with predefined arguments')
+    
     # Store parsed arguments received from command line
     try:
         commandLineArguments = parser.parse_args()
@@ -34,11 +38,29 @@ def deleteOutputDirectory(outputPath):
         rmtree(outputPath)
     os.makedirs(outputPath)
 
+# Load arguments from a config file
+def loadConfig(configPath):
+    try:
+        with open(configPath, "rb") as f:
+            config = tomllib.load(f)
+    except FileNotFoundError as e:
+        raise Exception(f"Config file '{configPath}' could not be found.")
+
+    return config
 
 # Validate received command line arguments
 def verifyArguments(commandLineArguments):
+    configPath = commandLineArguments.config
     inputPath = commandLineArguments.inputPath
-    outputPath = commandLineArguments.output or f'{DEFAULTOUTPUT}'
+
+    if configPath is None:
+        outputPath = commandLineArguments.output or f'{DEFAULTOUTPUT}'
+    else:
+        config = loadConfig(configPath)
+        if "output" in config:
+            outputPath = config["output"]
+        else:
+            outputPath = f'{DEFAULTOUTPUT}'
     return inputPath, outputPath
 
 def openCurrentFile(currentFile):
@@ -169,7 +191,10 @@ def textToHtmlConverter(inputPath, outputPath):
 if __name__ == '__main__':
     print (f"Python Text to HTML Converter Running")
     commandLineArguments = CommandLineParser()
-    inputPath, outputPath = verifyArguments(commandLineArguments)
-    textToHtmlConverter(inputPath, outputPath)
-    
-
+    try:
+        inputPath, outputPath = verifyArguments(commandLineArguments)
+        textToHtmlConverter(inputPath, outputPath)
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    sys.exit()
