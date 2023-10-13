@@ -4,7 +4,7 @@ ezTxt2Html is a simple open-source Python program that converts plain text and m
 
 ## Installation
 
-To use ezTxtToHtml, follow these steps:
+To use ez-txt2html, follow these steps:
 
 1. Ensure you have the latest version of Python 3 installed.
 
@@ -20,25 +20,25 @@ To use ezTxtToHtml, follow these steps:
 
 `cd ez-txt2html\src`
 
-5. Install the required dependencies by running:
+<!-- 5. Install the required dependencies by running:
 
-`pip install -r requirements.txt`
+`pip install -r requirements.txt` -->
 
-Now, you have successfully installed ezTxtToHtml.
+Now, you have successfully installed ez-txt2html.
 
 ## Usage
 
-You can run ezTxtToHtml from the command line. It accepts the following command-line arguments:
+You can run ez-txt2html from the command line. It accepts the following command-line arguments:
 
 - '-h' or '--help': Display help screen.
-- '-v' or '--version': Display the current version of ezTxtToHtml and exit.
+- '-v' or '--version': Display the current version of ez-txt2html and exit.
 - 'inputPath' (required): Provide the path to the target file or directory containing the files to be converted.
 - '-o' or '--output' (optional): Define the output directory for the HTML files. If not specified, it defaults to ./HTML.
 - '-c' or '--config' (optional): Provide a custom [TOML](https://toml.io/en/) config file with pre-defined arguments.
 
-Here's how you can run ezTxtToHtml:
+Here's how you can run ez-txt2html:
 
-`python ezTxtToHtml.py inputPath [-o outputPath] [-c configPath]`
+`python ez-txt2html.py inputPath [-o outputPath] [-c configPath]`
 
 - 'inputPath': Replace this with the path to the target file or directory containing text or markdown files.
 - 'o outputPath' (optional): Replace this with the desired output directory for the HTML files.
@@ -48,11 +48,11 @@ Here's how you can run ezTxtToHtml:
 
 1. Convert a single text or markdown file to HTML:
 
-`python ezTxtToHtml.py path/to/yourfile.txt`
+`python ez-txt2html.py path/to/yourfile.txt`
 
 2. Convert all text or markdown files in a directory to HTML:
 
-`python ezTxtToHtml.py path/to/yourdirectory`
+`python ez-txt2html.py path/to/yourdirectory`
 
 ## Output
 
@@ -74,20 +74,20 @@ Note: Using a config file will override other command line switches (if provided
 ## Examples 
 The included examples folder contains a sample text file which can be run to get an idea of this tool works.  While in the src folder run:
 
-`python ezTxtToHtml.py ../examples/` to see how it convert all text files in a folder, OR 
+`python ez-txt2html.py ../examples/` to see how it convert all text files in a folder, OR 
 
-`python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file.
+`python ez-txt2html.py ../examples/blogPost.txt` to see how it converts a single specified file.
 
 The converted HTML files will appear in /src/HTML/ unless otherwise specified. 
 
 To specify the output directory add '-o' or '--output' forllowed by the local or relative destination path to the command line:
-`python ezTxtToHtml.py ../examples/blogPost.txt -o ../examples`
+`python ez-txt2html.py ../examples/blogPost.txt -o ../examples`
 
-To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ezTxtToHtml.py ../examples/ -c ../examples/config.toml`
+To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ez-txt2html.py ../examples/ -c ../examples/config.toml`
 
 ## Version
 
-The current version of ezTxtToHtml is 0.1.
+The current version of ez-txt2html is 0.1.
 
 ## License
 
@@ -95,8 +95,8 @@ This program is open-source and released under the [MIT License](https://opensou
 
 ## Author
 
-ezTxtToHtml is maintained by [Bryce Seefieldt](https://github.com/bryce-seefieldt/).
+ez-txt2html is maintained by [Bryce Seefieldt](https://github.com/bryce-seefieldt/).
 
 If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/bryce-seefieldt/ez-txt2html/issues).
 
-Enjoy converting your text files to HTML with ezTxtToHtml!
+Enjoy converting your text files to HTML with ez-txt2html!
