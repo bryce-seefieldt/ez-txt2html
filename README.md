@@ -20,10 +20,6 @@ To use ez-txt2html, follow these steps:
 
 `cd ez-txt2html\src`
 
-<!-- 5. Install the required dependencies by running:
-
-`pip install -r requirements.txt` -->
-
 Now, you have successfully installed ez-txt2html.
 
 ## Usage
