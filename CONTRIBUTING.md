@@ -36,4 +36,3 @@ ez-txt2html is maintained by [Bryce Seefieldt](https://github.com/bryce-seefield
 
 If you encounter any issues or have suggestions for improvements, please [open an issue](https://github.com/bryce-seefieldt/ez-txt2html/issues).
 
-Enjoy converting your text files to HTML with ez-txt2html!
