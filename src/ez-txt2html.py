@@ -77,7 +77,8 @@ def parseMarkdownToHtml(markdownLines):
 def convertTextContent(parsedLines, filename):
     htmlContent = "<html lang='en'>\n<head>\n\t<meta charset='utf-8'>\n"
     pageTitle = os.path.splitext(os.path.basename(filename))[0]
-    htmlContent += f"""\n \t<title>{pageTitle}</title>\n\t<meta name='viewport' content='width=device-width, initial-scale=1'>
+    htmlContent += f"""\n \t<title>{pageTitle}</title>\n\t\
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
     \n</head>\n<body>\n"""
 
     if filename.endswith(".md"):
@@ -111,7 +112,8 @@ def convertTextContent(parsedLines, filename):
 def fileConversion(inputPath, outputPath, filename):
     try:
         verifiedFile = os.path.join(inputPath, filename)
-        convertedFilename = os.path.splitext(os.path.basename(filename))[0] + ".html"
+        convertedFilename = os.path.splitext(os.path.basename(filename))[0] +\
+            ".html"
         convertedPath = f"{outputPath}/{convertedFilename}"
         parsedLines = openCurrentFile(verifiedFile)
         htmlContent = convertTextContent(parsedLines, verifiedFile)
@@ -120,7 +122,8 @@ def fileConversion(inputPath, outputPath, filename):
         print(f'Error:", {e}')
 
 
-# Main program function receives arguments from user and runs conversion process
+# Main program function receives arguments from user and runs conversion
+# process
 def textToHtmlConverter(inputPath, outputPath):
     try:
         # Verify file path exists
@@ -137,7 +140,10 @@ def textToHtmlConverter(inputPath, outputPath):
                     deleteOutputDirectory(outputPath)
                     fileConversion(inputPath, outputPath, filename)
                 else:
-                    print("Incorrect file type, please provide .txt or .md files")
+                    print(
+                        "Incorrect file type, please provide .txt or .md\
+                           files"
+                    )
 
         else:
             print("Invalid path provided")
@@ -151,10 +157,12 @@ def textToHtmlConverter(inputPath, outputPath):
 
 
 if __name__ == "__main__":
-    print("EZ-TXT2HTML Converter Running")
+    print("EZ-TXT2HTML Converter Running\n")
     commandLineArguments = CommandLineParser(VERSION)
     try:
-        inputPath, outputPath = verifyArguments(commandLineArguments, DEFAULTOUTPUT)
+        inputPath, outputPath = verifyArguments(
+            commandLineArguments,
+            DEFAULTOUTPUT)
         textToHtmlConverter(inputPath, outputPath)
     except Exception as e:
         print(e)
