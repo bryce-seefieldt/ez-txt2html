@@ -112,8 +112,7 @@ def convertTextContent(parsedLines, filename):
 def fileConversion(inputPath, outputPath, filename):
     try:
         verifiedFile = os.path.join(inputPath, filename)
-        convertedFilename = os.path.splitext(os.path.basename(filename))[0] +\
-            ".html"
+        convertedFilename = os.path.splitext(os.path.basename(filename))[0] + ".html"
         convertedPath = f"{outputPath}/{convertedFilename}"
         parsedLines = openCurrentFile(verifiedFile)
         htmlContent = convertTextContent(parsedLines, verifiedFile)
@@ -160,9 +159,7 @@ if __name__ == "__main__":
     print("EZ-TXT2HTML Converter Running\n")
     commandLineArguments = CommandLineParser(VERSION)
     try:
-        inputPath, outputPath = verifyArguments(
-            commandLineArguments,
-            DEFAULTOUTPUT)
+        inputPath, outputPath = verifyArguments(commandLineArguments, DEFAULTOUTPUT)
         textToHtmlConverter(inputPath, outputPath)
     except Exception as e:
         print(e)

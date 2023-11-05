@@ -14,9 +14,7 @@ def CommandLineParser(versionNumber):
         help="Display current version and exit",
     )
 
-    parser.add_argument(
-        "inputPath", help="Provide path to target file or directory"
-        )
+    parser.add_argument("inputPath", help="Provide path to target file or directory")
 
     parser.add_argument(
         "-o",
