@@ -1,20 +1,35 @@
 import argparse
-from utilities.process_configurations import loadConfig 
+from utilities.process_configurations import loadConfig
+
 
 # Define Argument Parser
 def CommandLineParser(versionNumber):
-    parser = argparse.ArgumentParser(description='EZ-TXT2HTML CONVERTER HELP')
-    
-    parser.add_argument('-v', '--version', action='version', version=f'%(prog)s {versionNumber}',
-        help='Display current version and exit')
-    
-    parser.add_argument('inputPath', help='Provide path to target file or directory')
-    
-    parser.add_argument('-o','--output',  metavar='<output Path>',
-                        help='Define output directory. Defaults to ./til')
-    
-    parser.add_argument('-c', '--config', metavar='<config Path>', help='Provide a TOML file with predefined arguments')
-    
+    parser = argparse.ArgumentParser(description="EZ-TXT2HTML CONVERTER HELP")
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s {versionNumber}",
+        help="Display current version and exit",
+    )
+
+    parser.add_argument("inputPath", help="Provide path to target file or directory")
+
+    parser.add_argument(
+        "-o",
+        "--output",
+        metavar="<output Path>",
+        help="Define output directory. Defaults to ./til",
+    )
+
+    parser.add_argument(
+        "-c",
+        "--config",
+        metavar="<config Path>",
+        help="Provide a TOML file with predefined arguments",
+    )
+
     # Store parsed arguments received from command line
     try:
         commandLineArguments = parser.parse_args()
@@ -22,8 +37,9 @@ def CommandLineParser(versionNumber):
         print(f'Error:", {e}')
     except ValueError as e:
         print(f'Error:", {e}')
-        
+
     return commandLineArguments
+
 
 # Validate received command line arguments
 def verifyArguments(commandLineArguments, defaultOutput):
@@ -31,8 +47,8 @@ def verifyArguments(commandLineArguments, defaultOutput):
     inputPath = commandLineArguments.inputPath
 
     if configPath is None:
-        outputPath = commandLineArguments.output or f'{defaultOutput}'
-    else:   
+        outputPath = commandLineArguments.output or f"{defaultOutput}"
+    else:
         config = loadConfig(configPath)
         if "output" in config:
             outputPath = config["output"]
