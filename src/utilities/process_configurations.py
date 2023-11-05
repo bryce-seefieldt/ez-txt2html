@@ -1,5 +1,6 @@
 import tomllib
 
+
 # Load arguments from a .toml configuration file
 def loadConfig(configPath):
     try:
