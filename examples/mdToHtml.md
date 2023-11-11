@@ -1,9 +1,9 @@
-This week was an exciting adventure in overcoming inertia.  While a good refresher for some workflow and debugging practices, I got a harsh reminder of what it takes to switch gears and refocus on new priorities. 
-Tasked with building a command line text to html conversion tool, I chose to write my program for Python, as I find it to be an easy and efficient approach to writing CLI tools. Particularly when considering sharing the finished application with others, it is a relatively simple process to outline install and application instructions for Python programs.
-What I developed is ezTxt2Html, a simple open-source Python program that converts plain text (.txt) into HTML files (.html).  It can be used to convert individual files or all files in a directory. It’s easy to install with the following these steps:
+
+ezTxt2Html, a simple open-source Python program that converts plain text (.txt) into HTML files (.html).  It can be used to convert individual files or all files in a directory. It’s easy to install with the following these steps:
+
 1. Ensure you have the latest version of Python 3 installed.
 
-`python --version`
+```python --version```
 
 2. If needed, download and install [Python 3](https://www.python.org/downloads/)
 
@@ -44,5 +44,5 @@ The generated HTML files will be saved to automatically created ./src/HTML/ dire
 
 `python ezTxtToHtml.py ../examples/blogPost.txt` to see how it converts a single specified file.
 
-The converted files will be saved to  the /src/HTML/ directory, unless otherwise specified.
+The converted files will be saved to  the /src/til/ directory, unless otherwise specified.
 

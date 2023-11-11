@@ -32,7 +32,7 @@ You can run ez-txt2html from the command line. It accepts the following command-
 - '-o' or '--output' (optional): Define the output directory for the HTML files. If not specified, it defaults to ./HTML.
 - '-c' or '--config' (optional): Provide a custom [TOML](https://toml.io/en/) config file with pre-defined arguments.
 
-Here's how you can run ez-txt2html:
+Here's how you can run ez_txt2html:
 
 `python ez-txt2html.py inputPath [-o outputPath] [-c configPath]`
 
@@ -44,11 +44,11 @@ Here's how you can run ez-txt2html:
 
 1. Convert a single text or markdown file to HTML:
 
-`python ez-txt2html.py path/to/yourfile.txt`
+`python ez_txt2html.py path/to/yourfile.txt`
 
 2. Convert all text or markdown files in a directory to HTML:
 
-`python ez-txt2html.py path/to/yourdirectory`
+`python ez_txt2html.py path/to/yourdirectory`
 
 ## Output
 
@@ -70,20 +70,20 @@ Note: Using a config file will override other command line switches (if provided
 ## Examples 
 The included examples folder contains a sample text file which can be run to get an idea of this tool works.  While in the src folder run:
 
-`python ez-txt2html.py ../examples/` to see how it convert all text files in a folder, OR 
+`python ez_txt2html.py ../examples/` to see how it convert all text files in a folder, OR 
 
-`python ez-txt2html.py ../examples/blogPost.txt` to see how it converts a single specified file.
+`python ez_txt2html.py ../examples/til.md` to see how it converts a single specified file.
 
 The converted HTML files will appear in /src/HTML/ unless otherwise specified. 
 
 To specify the output directory add '-o' or '--output' forllowed by the local or relative destination path to the command line:
-`python ez-txt2html.py ../examples/blogPost.txt -o ../examples`
+`python ez-txt2html.py ../examples/til.md -o ../examples`
 
-To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ez-txt2html.py ../examples/ -c ../examples/config.toml`
+To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ez_txt2html.py ../examples/ -c ../config.toml`
 
 ## Version
 
-The current version of ez-txt2html is 0.1.
+The current version of ez-txt2html is 1.0.2
 
 ## License
 

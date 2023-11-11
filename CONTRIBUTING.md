@@ -29,19 +29,24 @@ To use ez-txt2html, follow these steps:
 Now, you have successfully installed ez-txt2html and are ready to run the program and make changes.
 To run the program see *Usage* instructions below.
 
-8. When you've completed your changes run the following to implement Black formatter and Flake8 linter:
+8. a) Test your code changes as you go:
+ `pytest src\test_textToHtmlConverter.py`
+
+    b) Try to add tests to \src\test_textToHtmlConverter.py for any code changes made.
+
+9. When you've completed your changes run the following to implement Black formatter and Flake8 linter:
 `python format.py`
 Black will automatically implement format changes.
 Flake8 will provide a list of changes required for any .py files you have changed.
 Make the suggested changes and run format.py again until all messages are cleared.
 
-9. Once all Flake8 linting is complete, you can commit and push your changes to youre remote repository (It is suggested you maintain the branch structure on your remote repo).
+10. Once all Flake8 linting is complete, you can commit and push your changes to youre remote repository (It is suggested you maintain the branch structure on your remote repo).
 `git add <<your/changed/files>>`
 `git commit -m "<<detailed commit message>>"`
 **Add and commit can be done as many times in the process as you prefer**
 `git push origin <<branchname>>`
 
-10. Create a pull-request on the [ez-txt2html upstream repository](https://github.com/bryce-seefieldt/ez-txt2html.git).
+11. Create a pull-request on the [ez-txt2html upstream repository](https://github.com/bryce-seefieldt/ez-txt2html.git).
 
 
 ## Usage
@@ -56,7 +61,7 @@ You can run ez-txt2html from the command line. It accepts the following command-
 
 Here's how you can run ez-txt2html:
 
-`python ez-txt2html.py inputPath [-o outputPath] [-c configPath]`
+`python src/ez-txt2html.py inputPath [-o outputPath] [-c configPath]`
 
 - 'inputPath': Replace this with the path to the target file or directory containing text or markdown files.
 - 'o outputPath' (optional): Replace this with the desired output directory for the HTML files.
@@ -66,11 +71,11 @@ Here's how you can run ez-txt2html:
 
 1. Convert a single text or markdown file to HTML:
 
-`python ez-txt2html.py path/to/yourfile.txt`
+`python src\ez_txt2html.py path/to/yourfile.txt`
 
 2. Convert all text or markdown files in a directory to HTML:
 
-`python ez-txt2html.py path/to/yourdirectory`
+`python src\ez_txt2html.py path/to/yourdirectory`
 
 ## Output
 
@@ -92,17 +97,16 @@ Note: Using a config file will override other command line switches (if provided
 ## Examples 
 The included examples folder contains a sample text file which can be run to get an idea of this tool works.  While in the src folder run:
 
-`python ez-txt2html.py ../examples/` to see how it convert all text files in a folder, OR 
+`python src\ez_txt2html.py ./examples/` to see how it convert all text files in a folder, OR 
 
-`python ez-txt2html.py ../examples/blogPost.txt` to see how it converts a single specified file.
+`python src\ez_txt2html.py ./examples/til.md`to see how it converts a single specified file.
 
-The converted HTML files will appear in /src/HTML/ unless otherwise specified. 
+The converted HTML files will appear in /til directory unless otherwise specified. 
 
 To specify the output directory add '-o' or '--output' forllowed by the local or relative destination path to the command line:
-`python ez-txt2html.py ../examples/blogPost.txt -o ../examples`
+`python src\ez_txt2html.py ./examples/til.md -o ../newFolder`
 
-To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ez-txt2html.py ../examples/ -c ../examples/config.toml`
-
+To utilize a config file add '-c' or '--output' followed by the path to the .toml file: `python ez_txt2html.py ./examples/ -c ./config.toml`
 
 ## License
 

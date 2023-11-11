@@ -2,12 +2,79 @@
 import os
 import re
 from shutil import rmtree
-
 import sys
-from utilities.process_arguments import CommandLineParser, verifyArguments
+import tomllib
+import argparse
 
-VERSION = "0.1.1"
+VERSION = "0.1.2"
 DEFAULTOUTPUT = "./til"
+
+
+# Load arguments from a .toml configuration file
+def loadConfig(configPath):
+    try:
+        with open(configPath, "rb") as f:
+            config = tomllib.load(f)
+    except FileNotFoundError as e:
+        raise Exception(
+            f"{e}:Configuration file '{configPath}' could not be found."
+        )
+
+    return config
+
+
+# Define Argument Parser
+def commandLineParser(versionNumber):
+    parser = argparse.ArgumentParser(description="EZ-TXT2HTML CONVERTER HELP")
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        action="version",
+        version=f"%(prog)s {versionNumber}",
+        help="Display current version and exit",
+    )
+
+    parser.add_argument(
+        "inputPath", help="Provide path to target file or directory"
+    )
+
+    parser.add_argument(
+        "-o",
+        "--output",
+        metavar="<output Path>",
+        help="Define output directory. Defaults to ./til",
+    )
+
+    parser.add_argument(
+        "-c",
+        "--config",
+        metavar="<config Path>",
+        help="Provide a TOML file with predefined arguments",
+    )
+
+    # Store parsed arguments received from command line
+    try:
+        commandLineArguments = parser.parse_args()
+    except argparse.ArgumentError as e:
+        print(f'Error:", {e}')
+    except ValueError as e:
+        print(f'Error:", {e}')
+
+    return commandLineArguments
+
+
+# Validate received command line arguments
+def verifyArguments(commandLineArguments, defaultOutput):
+    configPath = commandLineArguments.config
+    inputPath = commandLineArguments.inputPath
+    if configPath is None:
+        outputPath = commandLineArguments.output or f"{defaultOutput}"
+    else:
+        config = loadConfig(configPath)
+        if "output" in config:
+            outputPath = config["output"]
+    return inputPath, outputPath
 
 
 # Delete output directory if it currently exists
@@ -37,7 +104,8 @@ def writeToHtmlFile(outputPath, content):
 def parseMarkdownToHtml(markdownLines):
     htmlContent = ""
     paragraph = False
-    codeFenceOpen = False
+    code3_occurrence = 0
+    code1_occurrence = 0
 
     for line in markdownLines:
         if line.strip() == "":
@@ -55,15 +123,19 @@ def parseMarkdownToHtml(markdownLines):
             line = re.sub(r"^## (.+)$", r"<h2>\1</h2>", line)
             line = re.sub(r"^---", r"<hr />", line)
 
-            if re.search(r"\`\`\`", line):
-                if codeFenceOpen is True:
-                    line = re.sub(r"\`\`\`", r"</code>", line)
-                    codeFenceOpen = False
+            while "```" in line:
+                if code3_occurrence % 2 == 0:
+                    line = line.replace("```", "<code>", 1)
                 else:
-                    line = re.sub(r"\`\`\`", r"<code>", line)
-                    codeFenceOpen = True
+                    line = line.replace("```", "</code>", 1)
+                code3_occurrence += 1
 
-            line = re.sub(r"\`(.*?)\`", r"<code>\1</code>", line)
+            while "`" in line:
+                if code1_occurrence % 2 == 0:
+                    line = line.replace("`", "<code>", 1)
+                else:
+                    line = line.replace("`", "</code>", 1)
+                code1_occurrence += 1
 
             htmlContent += line.strip() + "\n"
 
@@ -103,15 +175,16 @@ def convertTextContent(parsedLines, filename):
             htmlContent += "</p>\n"
 
     htmlContent += "</body>\n</html>"
-    htmlContent += "</html>"
 
     return htmlContent
 
 
 # Individual file conversion function
-def fileConversion(inputPath, outputPath, filename):
+def fileConversion(inputPath, outputPath):
     try:
-        verifiedFile = os.path.join(inputPath, filename)
+        # verifiedFile = os.path.join(inputPath, filename)
+        verifiedFile = inputPath
+        filename = inputPath
         convertedFilename = (
             os.path.splitext(os.path.basename(filename))[0] + ".html"
         )
@@ -129,37 +202,39 @@ def textToHtmlConverter(inputPath, outputPath):
     try:
         # Verify file path exists
         if os.path.exists(inputPath):
-            # Verify if path is a directory or file
             if os.path.isdir(inputPath):
+                # Path is a directory or file
                 deleteOutputDirectory(outputPath)
                 for filename in os.listdir(inputPath):
+                    inputFile = inputPath + f"/{filename}"
                     if filename.endswith((".txt", ".md")):
-                        fileConversion(inputPath, outputPath, filename)
+                        fileConversion(inputFile, outputPath)
 
             else:
                 if inputPath.endswith((".txt", ".md")):
                     deleteOutputDirectory(outputPath)
-                    fileConversion(inputPath, outputPath, filename)
+                    filename = os.path.basename(inputPath).split("/")[-1]
+                    fileConversion(inputPath, outputPath)
                 else:
                     print(
                         "Incorrect file type, please provide .txt or .md\
-                           files"
+                        files"
                     )
 
         else:
-            print("Invalid path provided")
+            raise ValueError("Invalid path provided")
 
     except ValueError as e:
-        print(f'Error:", {e}')
+        print(f"Error: {e}")
     except Exception as e:
-        print(f'Error:", {e}')
+        print(f"Error: {e}")
 
     return
 
 
 if __name__ == "__main__":
     print("EZ-TXT2HTML Converter Running\n")
-    commandLineArguments = CommandLineParser(VERSION)
+    commandLineArguments = commandLineParser(VERSION)
     try:
         inputPath, outputPath = verifyArguments(
             commandLineArguments, DEFAULTOUTPUT
