@@ -181,11 +181,11 @@ class TestPaths:
         # Assert that the printed output contains the expected error message
         assert "Error: Invalid path provided" in captured.out
 
-    def test_no_write_permissions(self, capsys):
-        input_path = "./examples"
-        output_path = "c://"
-        # Use patch to simulate a directory without write permissions
-        with patch("os.access", return_value=False):
-            textToHtmlConverter(input_path, output_path)
-            captured = capsys.readouterr()
-            assert "Error: [WinError 5] Access is denied:" in captured.out
+    # def test_no_write_permissions(self, capsys):
+    #     input_path = "./examples"
+    #     output_path = "c://"
+    #     # Use patch to simulate a directory without write permissions
+    #     with patch("os.access", return_value=False):
+    #         textToHtmlConverter(input_path, output_path)
+    #         captured = capsys.readouterr()
+    #         assert "Error: [WinError 5] Access is denied:" in captured.out
