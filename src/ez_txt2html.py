@@ -231,16 +231,34 @@ def textToHtmlConverter(inputPath, outputPath):
 
     return
 
-
-if __name__ == "__main__":
+def ez_txt2html_Main(version, defaultOutput):
     print("EZ-TXT2HTML Converter Running\n")
-    commandLineArguments = commandLineParser(VERSION)
+    commandLineArguments = commandLineParser(version)
     try:
         inputPath, outputPath = verifyArguments(
-            commandLineArguments, DEFAULTOUTPUT
+            commandLineArguments, defaultOutput
         )
         textToHtmlConverter(inputPath, outputPath)
     except Exception as e:
         print(e)
         sys.exit(1)
     sys.exit()
+
+if __name__ == "__main__":
+    try:
+        ez_txt2html_Main(VERSION, DEFAULTOUTPUT)
+    except Exception as e:
+        print(e)
+        sys.exit(1)
+    sys.exit()
+    # print("EZ-TXT2HTML Converter Running\n")
+    # commandLineArguments = commandLineParser(VERSION)
+    # :
+    #     inputPath, outputPath = verifyArguments(
+    #         commandLineArguments, DEFAULTOUTPUT
+    #     )
+    #     textToHtmlConverter(inputPath, outputPath)
+    # except Exception as e:
+    #     print(e)
+    #     sys.exit(1)
+    # sys.exit()
