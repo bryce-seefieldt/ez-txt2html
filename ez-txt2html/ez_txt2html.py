@@ -6,7 +6,7 @@ import sys
 import tomllib
 import argparse
 
-VERSION = "0.1.2"
+VERSION = "1.0.1"
 DEFAULTOUTPUT = "./til"
 
 
@@ -231,7 +231,7 @@ def textToHtmlConverter(inputPath, outputPath):
 
     return
 
-def ez_txt2html_Main(version, defaultOutput):
+def ez_txt2html_main(version, defaultOutput):
     print("EZ-TXT2HTML Converter Running\n")
     commandLineArguments = commandLineParser(version)
     try:
@@ -246,7 +246,7 @@ def ez_txt2html_Main(version, defaultOutput):
 
 if __name__ == "__main__":
     try:
-        ez_txt2html_Main(VERSION, DEFAULTOUTPUT)
+        ez_txt2html_main(VERSION, DEFAULTOUTPUT)
     except Exception as e:
         print(e)
         sys.exit(1)

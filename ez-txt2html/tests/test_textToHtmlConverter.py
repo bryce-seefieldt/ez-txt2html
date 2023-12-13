@@ -1,7 +1,8 @@
 import os
 import pytest
 from unittest.mock import patch
-from .ez_txt2html import (
+from ..ez_txt2html import (
+    ez_txt2html_main,
     textToHtmlConverter,
     fileConversion,
     openCurrentFile,
