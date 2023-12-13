@@ -4,21 +4,24 @@ ezTxt2Html is a simple open-source Python program that converts plain text and m
 
 ## Installation
 
-To use ez-txt2html, follow these steps:
-
-1. Ensure you have the latest version of Python 3 installed.
+To use ez-txt2html, Ensure you have the latest version of Python 3 installed.
 
 `python --version`
 
-2. If needed, download and install [Python 3](https://www.python.org/downloads/)
+If needed, download and install [Python 3](https://www.python.org/downloads/)
 
-3. Clone or download this repository to your local machine:
+### Option A) Install and run the program as a Python Package
 
-`git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
+1. `pip install ez-txt2html-bryce-seefieldt`
+2. Run the main module `python -m ez-txt2html.ez_txt2html -h`.
+This will describe the command line options for how you can convert your files.
+See below for usage details on command line options.
 
-4. Change your current working directory to the src directory within the project folder:
+### Option B) Clone or download source code to your local machine 
+_(recommended for contributing to this project)_
 
-`cd ez-txt2html\src`
+1. `git clone https://github.com/bryce-seefieldt/ez-txt2html.git`
+2. Change your current working directory to the package directory within the project folder: `cd ez-txt2html\ez-txt2html`
 
 Now, you have successfully installed ez-txt2html.
 
@@ -34,6 +37,10 @@ You can run ez-txt2html from the command line. It accepts the following command-
 
 Here's how you can run ez_txt2html:
 
+1) If installed as a package (via pip):
+`python -m ez-txt2html.ez_txt2html inputPath [-o outputPath] [-c configPath]`
+
+2) If installed from source codeL
 `python ez-txt2html.py inputPath [-o outputPath] [-c configPath]`
 
 - 'inputPath': Replace this with the path to the target file or directory containing text or markdown files.
